@@ -93,7 +93,6 @@ var makeWatchers = function (storage, dataKey) { return Object.keys(storage).red
   // allow .bind
   var handler = function handler (value) {
     store.set(key, value)
-    console.log((vueKey + " watcher executed..."))
   }
 
   return Object.assign(( obj = {}, obj[vueKey] = { handler: handler }, obj ), acc)
@@ -114,14 +113,12 @@ module.exports = function (storage, dataKey) { return ({
 var store = __webpack_require__(0)
 
 module.exports = function (schema) {
-  // console.log(schema)
   var local = store.getAll()
   var storage = Object.keys(schema).reduce(function (acc, key) {
     var value = local[key] || schema[key]
     return Object.assign(( obj = {}, obj[key] = value, obj ), acc)
     var obj;
   }, {})
-  // console.log(storage)
   return storage
 }
 
